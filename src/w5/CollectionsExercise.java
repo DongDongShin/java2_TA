@@ -28,22 +28,40 @@ public class CollectionsExercise  {
 
         }
         System.out.println();
+
         Set<Integer> set = new HashSet<>(list);
+        Iterator<Integer> it;
+        it = set.iterator();
+
         System.out.print("set (no duplicates): ");
-        for (Integer temp : set) {
-            System.out.print(temp+" ");
+//        for (Integer temp : set) {
+//            System.out.print(temp+" ");
+//        }
+        while (it.hasNext()) {
+            System.out.println(it.next()+" ");
         }
         System.out.println();
         System.out.println("Multiplicity of each number in the list.");
+        it = list.iterator();
         Map<Integer,Integer> map = new HashMap<>();
-        for (Integer temp : list) {
-            map.put(temp,map.getOrDefault(temp,0)+1);
+//        for (Integer temp : list) {
+//            map.put(temp,map.getOrDefault(temp,0)+1);
+//        }
+        while (it.hasNext()) {
+            int key = it.next();
+            map.put(key,map.getOrDefault(key,0)+1);
         }
-        int[] arr = new int[n+1];
-        int maxindex =-1;
+        Set<Integer> keyset = map.keySet();//맵의key셋
+        it = keyset.iterator();
+        Integer key;
+        while(it.hasNext()) {
+            key = it.next();
+            System.out.println(key + ":" + map.get(key));
+        }
 
+        int[] arr = new int[n+1]; //각자의 도수 분포표를 표시
+        int maxindex =-1;
         for (Integer temp : map.keySet()) {
-            System.out.println(temp+":"+map.get(temp));
             maxindex= Math.max(maxindex,map.get(temp));
             arr[map.get(temp)]++;
         }
