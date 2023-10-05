@@ -108,7 +108,7 @@ public class SpecialNumberGenerator2 {
         System.out.println();
 
         System.out.print("10 numbers in the end of the union: ");
-        lit = list.listIterator(Math.max(0,  union.size()-10));//마지막 10개를 지정하는데.. union size
+        lit = list.listIterator(Math.max(0,  union.size()-10));//마지막 10개를 지정하는데.. union size 인덱스를 설정해야함.. 리스트가 10보다 큼
         count = 0;
         while (lit.hasNext()) {
             System.out.print(lit.next() + " ");

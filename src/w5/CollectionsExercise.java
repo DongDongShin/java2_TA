@@ -51,13 +51,24 @@ public class CollectionsExercise  {
             int key = it.next();
             map.put(key,map.getOrDefault(key,0)+1);
         }
+
+
+
+
+
+
         Set<Integer> keyset = map.keySet();//맵의key셋
         it = keyset.iterator();
         Integer key;
-        while(it.hasNext()) {
+        while(it.hasNext()) { //맵 풀력
             key = it.next();
             System.out.println(key + ":" + map.get(key));
         }
+
+
+//        for (Integer key2 : map.keySet()) {
+//            System.out.println(key2 + ":" + map.get(key2));
+//        }
 
         int[] arr = new int[n+1]; //각자의 도수 분포표를 표시
         int maxindex =-1;
