@@ -1,72 +1,107 @@
 package w6.arraylist2;
-
 import java.util.Arrays;
 
 public class ArrayIntList {
 
+    public static void main(String[] args) { }
 
-    private  static final int DEFAULT_CAPACITY = 10;
-    private  int size;
-    private int  capacity;
-    private  int[] element;
+    private static final int DEFAULT_CAPACITY = 10;
 
-    public ArrayIntList(){
-        if(capacity<10) throw new IllegalArgumentException("capacity cannot be negative: "+capacity);
-        element = new int[DEFAULT_CAPACITY];
+    // fields
+    private int size;
+    private int[] element;
+
+    /**
+     * DEFAULT_CAPACITY 크기의 배열을 구성하고
+     * size를 0으로 설정한다.
+     */
+    public ArrayIntList() {
         size = 0;
-
+        element = new int[DEFAULT_CAPACITY];
     }
 
-    public void add(int index,int value){//인덱스 안에 지정해서 넣어줌
+
+    public ArrayIntList(int capacity) {
+        if (capacity < 0) {
+            throw new IllegalArgumentException("capacity cannot be negative: " + capacity);
+        }
+        size = 0;
+        element = new int[capacity];
+    }
+
+
+    public void add(int value) {
+        add(size, value);
+    }
+
+
+
+    public void add(int index, int value) {
+        checkIndex(index, 0, size);
         checkResize();
 
-        for(int i = size;i>index;i--){//이 이후의 값들을 자기 전에 것을 참조해야함. 새로운 값이 추가가 되니깐. 그 앞에 인덱스가 그 전에 거를 가져야하고
-            element[i] = element[i-1];
+
+        for (int i = size; i > index; i--) {
+            element[i] = element[i - 1];
         }
-        //넣어줘야지 해당 인덱스에 넣을 려면.. 그 전의 값이 뒤에 밀려야 함.
+
+
         element[index] = value;
-        size++;//사이즈가 더해짐.
+        size++;
 
     }
-    public void add(int value){
-        element[size-1] = value;
-    }
 
-    public int get(int index){
+
+    public int get(int index) {
+        checkIndex(index, 0, size - 1);
+
+
         return element[index];
     }
 
-    public void set(int index, int value){
+
+    public void set(int index, int value) {
+
+        checkIndex(index, 0, size - 1);
+
         element[index] = value;
     }
-    public boolean isEmpty(){
-        if(element.length==0)
-            return true;
-        else return false;
+
+
+    public int size() {
+        return size;
     }
 
-    public void remove(int index){
-        for(int i = index;i<size-1;i++){
-            element[i]= element[i+1];
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+
+    public void remove(int index) {
+
+        checkIndex(index, 0, size - 1);
+
+
+        for (int i = index; i < size - 1; i++) {
+            element[i] = element[i + 1];
         }
         size--;
     }
 
-    public int size(){
-        return element.length;
+
+    public int indexOf(int value) {
+        for (int i = 0; i < size; i++) {
+            if (element[i] == value) {
+                return i;
+            }
+        }
+        return -1;   // not found
     }
 
-    private void checkResize(){
-        if (size == element.length) {
-            // resize the array
-            element = Arrays.copyOf(element, 2 * size);
-        }
-    }
 
-    private void checkIndex(int index, int min, int max){
-        if(index<min || index> max){
-            throw new ArrayIndexOutOfBoundsException("Wrong index: " +index);
-        }
+    public boolean contains(int value) {
+        return indexOf(value) >= 0;
     }
 
     public String toString() {
@@ -82,4 +117,20 @@ public class ArrayIntList {
         else
             return "[]";
     }
+
+
+    private void checkResize() {
+
+        if (size == element.length) {
+            element = Arrays.copyOf(element, 2 * size);
+        }
+    }
+
+
+    private void checkIndex(int index, int min, int max) {
+        if (index < min || index > max) {
+            throw new ArrayIndexOutOfBoundsException("Wrong index: " + index);
+        }
+    }
 }
+
