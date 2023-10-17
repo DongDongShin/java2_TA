@@ -13,6 +13,18 @@ public class ArrayIntList {
         size = 0;
 
     }
+    /**
+     * 주어진 크기의 크기의 배열을 구성하고
+     * size를 0으로 설정한다.
+     * @param capacity 초기 용량 (0 이상이어야 함).
+     */
+    public ArrayIntList(int capacity) {
+        if (capacity < 0) {
+            throw new IllegalArgumentException("capacity cannot be negative: " + capacity);
+        }
+        size = 0;
+        element = new int[capacity];
+    }
 
     public void add(int index,int value){//인덱스 안에 지정해서 넣어줌
         checkResize();
