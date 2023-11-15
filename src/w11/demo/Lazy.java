@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Lazy {
-
+//
     private static long counter = 0;
     public static void main(String[] args) {
         IntStream is = IntStream.range(1,  10)

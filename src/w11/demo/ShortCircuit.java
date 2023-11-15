@@ -18,5 +18,6 @@ public class ShortCircuit {
                 .limit(2)//얘로 인해서 두번만 일할꺼를 생각하게해
                 .forEach(System.out::println);
     }
+    //
 }
 

@@ -36,7 +36,7 @@ public class StreamConcept {
             System.err.format("IOException: %s%n", e);
         }
         System.out.println(str);
-
+//
         Pattern pattern = Pattern.compile("\\P{L}+");
         Stream<String> ss = pattern.splitAsStream(str);
         ss.forEach(s -> System.out.print(s + " "));

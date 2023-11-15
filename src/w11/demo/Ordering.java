@@ -16,7 +16,7 @@ public class Ordering {
         System.out.println();
         numbers.parallelStream().forEachOrdered(System.out::print);
 
-
+//
     }
 
 }

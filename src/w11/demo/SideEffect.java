@@ -49,7 +49,7 @@ public class SideEffect {
         List<String> results = new ArrayList<>(); //부수효과란 파이프라인 연산이 파이프라인 바깥의 무엇인가를 변경한는 행위.
         List<String> src = Arrays.asList("a", "b", "c");
         src.stream().forEach(s -> results.add(s));//파이프라인 연산에서 results의 원소를 추가하고 있음.
-
+//
         // 부수효과에 의존하지 않는 예
         List<String> results2 = new ArrayList<>();
         results2 = src.stream().collect(Collectors.toList());

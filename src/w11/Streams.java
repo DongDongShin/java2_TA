@@ -34,7 +34,7 @@ public class Streams {
      */
 
     /**
-     * 단어의 리스트가 주어지고, 오직 짝수 길이의 단어, upper case 변환된 출력 리스트를 생성하여라
+     * 단어의 리스트가 주어지고, 오직 홀수 길이의 단어, upper case 변환된 출력 리스트를 생성하여라
      */
     @Test
     public void d1_upcaseOddLengthWords() {
@@ -42,7 +42,6 @@ public class Streams {
                 "alfa", "bravo", "charlie", "delta", "echo", "foxtrot");
 
         List<String> result = input.stream().filter(w -> w.length()%2!=0).map(w -> w.toUpperCase()).collect(Collectors.toList());
-        System.out.println(result);
 
         assertEquals(List.of("BRAVO", "CHARLIE", "DELTA", "FOXTROT"), result);
     }
@@ -78,7 +77,6 @@ public class Streams {
                 .skip(2)
                 .limit(3)
                 .map(s -> s.substring(1, 2))
-                //.map(s -> s.charAt(1)) <-이걸로 하면 String Stream이 아니기 때문에 error가 발생
                 .collect(Collectors.joining(","));
 
         assertEquals("h,e,c", result);
@@ -172,7 +170,7 @@ public class Streams {
                 "alfa", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel");
 
         int maxLength = input.stream().mapToInt(s -> s.length()).max().orElse(-1);
-        List<String> result = input.stream().filter(w -> w.length()==maxLength).collect(Collectors.toList());
+        List<String> result = input.stream().filter(s -> s.length()==maxLength).collect(Collectors.toList());
 
         assertEquals(List.of("charlie", "foxtrot"), result);
     }
@@ -192,7 +190,10 @@ public class Streams {
         List<String> input = List.of(
                 "alfa", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel");
 
-        List<String> result = IntStream.range(0,input.size()).filter(i -> i<input.get(i).length()).mapToObj(i -> input.get(i)).collect(Collectors.toList());
+        List<String> result = IntStream.range(0,input.size())
+                            .filter(i -> input.get(i).length() > 1)
+                            .mapToObj(i -> input.get(i))
+                            .collect(Collectors.toList());
 
         assertEquals(List.of("alfa", "bravo", "charlie", "delta", "foxtrot"), result);
     }

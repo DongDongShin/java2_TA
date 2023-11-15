@@ -345,6 +345,7 @@ public class Lambdas {
 	 */
 	@Test
 	public void d_supplier3() {
+		//int[] n -> Integer::new
 		Supplier<StringBuilder> sup = StringBuilder::new;
 
 		assertEquals("", sup.get().toString());
