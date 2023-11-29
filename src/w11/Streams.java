@@ -191,7 +191,7 @@ public class Streams {
                 "alfa", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel");
 
         List<String> result = IntStream.range(0,input.size())
-                            .filter(i -> input.get(i).length() > 1)
+                            .filter(i -> input.get(i).length() > i)
                             .mapToObj(i -> input.get(i))
                             .collect(Collectors.toList());
 
